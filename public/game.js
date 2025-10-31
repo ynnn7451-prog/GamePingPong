@@ -212,13 +212,13 @@ function draw() {
     // 🎾 Vẽ bóng nổi bật màu xanh neon
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
-    ctx.shadowColor = "#1100ffff";
+    ctx.shadowColor = "#ff0000ff";
     ctx.shadowBlur = 15;
-    ctx.fillStyle = "#1100ffff";
+    ctx.fillStyle = "#ff0000ff";
     ctx.fill();
     ctx.shadowBlur = 0;
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "#003cffff";
+    ctx.strokeStyle = "#d61818ff";
     ctx.stroke();
 
     // Vẽ paddle
