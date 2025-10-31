@@ -5,6 +5,8 @@ const homeScreen = document.getElementById("homeScreen");
 const gameScreen = document.getElementById("gameScreen");
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+const background = new Image();
+background.src = "background.jpg";
 const roomInfo = document.getElementById("roomInfo");
 const playerNameInput = document.getElementById("playerName");
 const createRoomBtn = document.getElementById("createRoom");
@@ -199,13 +201,27 @@ socket.on("rematchStart", () => {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Vẽ bóng (màu tương phản)
-    ctx.fillStyle = CANVAS_BALL_COLOR;
+    // 🖼️ Vẽ background trước (ảnh nằm trong thư mục public)
+    if (background.complete && background.naturalHeight !== 0) {
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    } else {
+        background.onload = () => ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    }
+
+
+    // 🎾 Vẽ bóng nổi bật màu xanh neon
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
+    ctx.shadowColor = "#1100ffff";
+    ctx.shadowBlur = 15;
+    ctx.fillStyle = "#1100ffff";
     ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#003cffff";
+    ctx.stroke();
 
-    // Vẽ paddle (màu primary để tương phản)
+    // Vẽ paddle
     ctx.fillStyle = CANVAS_PADDLE_COLOR;
     const ids = Object.keys(players);
     ids.forEach((id, i) => {
@@ -214,7 +230,7 @@ function draw() {
         ctx.fillRect(x, y, 10, 80);
     });
 
-    // (Optional) If no DOM message element, draw small message
+    // Hiển thị thông báo nhỏ
     if (!gameMessageEl && message) {
         ctx.font = "18px Arial";
         ctx.textAlign = "center";
@@ -222,6 +238,8 @@ function draw() {
         ctx.textAlign = "left";
     }
 }
+
+   
 
 function showRestartOptions() {
     const container = document.getElementById("buttonContainer");
