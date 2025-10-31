@@ -5,6 +5,10 @@ const homeScreen = document.getElementById("homeScreen");
 const gameScreen = document.getElementById("gameScreen");
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+// Background image
+const background = new Image();
+background.src = "background.jpg";
+
 const roomInfo = document.getElementById("roomInfo");
 const playerNameInput = document.getElementById("playerName");
 const createRoomBtn = document.getElementById("createRoom");
@@ -197,10 +201,17 @@ socket.on("rematchStart", () => {
 
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Vẽ background trước
+    if (background.complete) {
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    } else {
+        background.onload = () => ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    }
 
-    // Vẽ bóng (màu tương phản)
-    ctx.fillStyle = CANVAS_BALL_COLOR;
+    // Nếu muốn nền mờ tối hơn để bóng nổi bật:
+    ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
     ctx.fill();
