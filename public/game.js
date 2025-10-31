@@ -24,7 +24,7 @@ const gameMessageEl = document.getElementById("gameMessage");
 // Read theme colors from CSS variables so canvas elements contrast with background
 const rootStyles = getComputedStyle(document.documentElement);
 const CANVAS_BALL_COLOR = (rootStyles.getPropertyValue('--text') || '#07203f').trim();
-const CANVAS_PADDLE_COLOR = (rootStyles.getPropertyValue('--primary') || '#0b66ff').trim();
+const CANVAS_PADDLE_COLOR = (rootStyles.getPropertyValue('--primary') || '#ff2c2cff').trim();
 
 let players = {};
 let ball = { x: 300, y: 200 };
@@ -218,7 +218,7 @@ function draw() {
     ctx.fill();
     ctx.shadowBlur = 0;
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "#d61818ff";
+    ctx.strokeStyle = "#ebedf4ff";
     ctx.stroke();
 
     // Vẽ paddle
