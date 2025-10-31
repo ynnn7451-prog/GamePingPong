@@ -212,7 +212,7 @@ function draw() {
     // 🎾 Vẽ bóng xanh nổi bật (glow effect)
 ctx.beginPath();
 ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
-ctx.shadowColor = "#002affff";   // màu ánh sáng xung quanh bóng
+ctx.shadowColor = "#0800ffff";   // màu ánh sáng xung quanh bóng
 ctx.shadowBlur = 15;           // độ lan sáng
 ctx.fillStyle = "#0000ffff";     // màu bóng chính (xanh neon)
 ctx.fill();
