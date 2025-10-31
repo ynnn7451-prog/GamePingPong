@@ -208,13 +208,23 @@ function draw() {
         background.onload = () => ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     }
 
-    // Nếu muốn nền mờ tối hơn để bóng nổi bật:
-    ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 🎾 Vẽ bóng xanh nổi bật (glow effect)
+ctx.beginPath();
+ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
+ctx.shadowColor = "#00b7ff";   // màu ánh sáng xung quanh bóng
+ctx.shadowBlur = 15;           // độ lan sáng
+ctx.fillStyle = "#00b7ff";     // màu bóng chính (xanh neon)
+ctx.fill();
 
-    ctx.beginPath();
-    ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
-    ctx.fill();
+// Nếu muốn thêm viền sáng quanh bóng
+ctx.lineWidth = 2;
+ctx.strokeStyle = "#00ffff";   // viền sáng hơn
+ctx.stroke();
+
+// Reset shadow để không làm mờ paddle và text
+ctx.shadowBlur = 0;
+
 
     // Vẽ paddle (màu primary để tương phản)
     ctx.fillStyle = CANVAS_PADDLE_COLOR;
