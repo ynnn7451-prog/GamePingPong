@@ -212,15 +212,11 @@ function draw() {
     // 🎾 Vẽ bóng xanh nổi bật (glow effect)
 ctx.beginPath();
 ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
-ctx.shadowColor = "#00b7ff";   // màu ánh sáng xung quanh bóng
+ctx.shadowColor = "#0800ffff";   // màu ánh sáng xung quanh bóng
 ctx.shadowBlur = 15;           // độ lan sáng
-ctx.fillStyle = "#00b7ff";     // màu bóng chính (xanh neon)
+ctx.fillStyle = "#0000ffff";     // màu bóng chính (xanh neon)
 ctx.fill();
 
-// Nếu muốn thêm viền sáng quanh bóng
-ctx.lineWidth = 2;
-ctx.strokeStyle = "#00ffff";   // viền sáng hơn
-ctx.stroke();
 
 // Reset shadow để không làm mờ paddle và text
 ctx.shadowBlur = 0;
