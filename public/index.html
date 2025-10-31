@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ping Pong Multiplayer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div id="homeScreen" class="screen">
+    <h1 class="title">🏓 Ping Pong Multiplayer</h1>
+    <div class="form-container">
+      <input type="text" id="playerName" placeholder="Nhập tên của bạn" required>
+      <div class="button-group">
+        <button id="createRoom" class="btn primary">Tạo phòng mới</button>
+        <div class="join-room">
+          <input type="text" id="roomId" placeholder="Nhập ID phòng">
+          <button id="joinRoom" class="btn secondary">Vào phòng</button>
+        </div>
+        <button id="randomRoom" class="btn accent">Tham gia ngẫu nhiên</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameScreen" class="screen hidden modern">
+    <header class="game-header">
+      <h2 class="room-title">🏓 Phòng: <span id="roomInfo"></span></h2>
+    </header>
+
+    <main class="game-layout">
+      <section id="gameArea" class="game-area centered">
+        <!-- Top scoreboard: player names and scores -->
+        <div class="top-bar">
+          <div class="top-player left">
+            <div id="topLeftName" class="top-name">---</div>
+            <div id="topLeftScore" class="top-score">0</div>
+          </div>
+
+          <div class="top-vs">&nbsp;•&nbsp;</div>
+
+          <div class="top-player right">
+            <div id="topRightScore" class="top-score">0</div>
+            <div id="topRightName" class="top-name">---</div>
+          </div>
+        </div>
+
+        <div id="gameMessage" class="game-message"></div>
+        <canvas id="gameCanvas" width="600" height="400"></canvas>
+        <div id="buttonContainer" class="controls">
+          <button id="restartBtn" class="btn primary hidden">Chơi lại</button>
+          <button id="exitBtn" class="btn danger hidden">Thoát</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
