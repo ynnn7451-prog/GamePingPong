@@ -23,7 +23,7 @@ const gameMessageEl = document.getElementById("gameMessage");
 
 // Read theme colors from CSS variables so canvas elements contrast with background
 const rootStyles = getComputedStyle(document.documentElement);
-const CANVAS_BALL_COLOR = (rootStyles.getPropertyValue('--text') || '#07203f').trim();
+const CANVAS_BALL_COLOR = (rootStyles.getPropertyValue('--text') || '#ea3114ff').trim();
 const CANVAS_PADDLE_COLOR = (rootStyles.getPropertyValue('--primary') || '#ff2c2cff').trim();
 
 let players = {};
@@ -211,7 +211,7 @@ function draw() {
 
     // 🎾 Vẽ bóng nổi bật màu xanh neon
     ctx.beginPath();
-    ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
+    ctx.arc(ball.x, ball.y, 11, 0, Math.PI * 2);
     ctx.shadowColor = "#ff0000ff";
     ctx.shadowBlur = 15;
     ctx.fillStyle = "#ff0000ff";
